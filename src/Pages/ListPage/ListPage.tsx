@@ -2,14 +2,13 @@ import { useGetArticlesQuery } from "../../redux/api/api";
 import { Spin, Alert, Pagination } from "antd";
 import { PostItem } from "../../Components/PostItem/PostItem";
 import style from "./ListPage.module.scss";
+import { getOffset } from "./func";
+import { useState } from "react";
 
 export const ListPage: React.FC = () => {
-  const { data, isLoading, isError } = useGetArticlesQuery();
+  const [offset, setOffset] = useState(0);
+  const { data, isLoading, isError } = useGetArticlesQuery(offset);
   console.log(data);
-
-  if (isLoading) {
-    return <Spin fullscreen size="large" />;
-  }
 
   if (isError) {
     return (
@@ -21,13 +20,15 @@ export const ListPage: React.FC = () => {
     );
   }
   return (
-    <>
+    <Spin spinning={isLoading} className={style.Alert} size="large">
       <ul className={style.ListPage}>
         {data?.articles.map((article) => (
-          <PostItem
-            article={article}
-            key={article.createdAt + article.author.username}
-          ></PostItem>
+          <li
+            key={article.createdAt + article.author.username + article.slug}
+            className={style.container}
+          >
+            <PostItem article={article} />
+          </li>
         ))}
       </ul>
       <Pagination
@@ -36,7 +37,11 @@ export const ListPage: React.FC = () => {
         total={data?.articlesCount}
         showSizeChanger={false}
         className={style.pagination}
+        hideOnSinglePage
+        onChange={(page) => {
+          setOffset(getOffset(page));
+        }}
       />
-    </>
+    </Spin>
   );
 };

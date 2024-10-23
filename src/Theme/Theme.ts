@@ -7,6 +7,7 @@ export const theme: ThemeConfig = {
       headerBg: "#fff",
       headerHeight: 80,
       headerPadding: "16px 22px",
+      bodyBg: "rgb(235, 238, 243)",
     },
     Pagination: {
       itemBg: "inherit",

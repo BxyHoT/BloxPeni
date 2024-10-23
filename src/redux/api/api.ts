@@ -22,6 +22,10 @@ export interface IArticle {
   author: IAuthor;
 }
 
+interface ArticleDTO {
+  article: IArticle;
+}
+
 interface ArticlesDTO {
   articles: IArticle[];
   articlesCount: number;
@@ -31,10 +35,14 @@ export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
-    getArticles: builder.query<ArticlesDTO, void>({
-      query: () => "articles?limit=5",
+    getArticles: builder.query<ArticlesDTO, number>({
+      query: (offset) => "articles?limit=5&offset=" + offset,
+      keepUnusedDataFor: 0,
+    }),
+    getArticle: builder.query<ArticleDTO, string>({
+      query: (slug) => "articles/" + slug,
     }),
   }),
 });
 
-export const { useGetArticlesQuery } = api;
+export const { useGetArticlesQuery, useGetArticleQuery } = api;

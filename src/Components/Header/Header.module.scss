@@ -5,6 +5,8 @@
   color: variables.$heading-color;
   font-size: variables.$heading-font-size;
   line-height: 48px;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .link {
