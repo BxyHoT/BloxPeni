@@ -2,28 +2,28 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const BASE_URL = "https://blog-platform.kata.academy/api";
 
-interface Author {
+interface IAuthor {
   username: string;
   bio: string;
   image: string;
   following: boolean;
 }
 
-interface Article {
+export interface IArticle {
   slug: string;
   title: string;
   description: string;
   body: string;
-  tags: string[];
+  tagList: string[];
   createdAt: string;
   updatedAt: string;
   favorited: boolean;
   favoritesCount: number;
-  author: Author;
+  author: IAuthor;
 }
 
 interface ArticlesDTO {
-  articles: Article[];
+  articles: IArticle[];
   articlesCount: number;
 }
 

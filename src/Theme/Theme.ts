@@ -8,5 +8,11 @@ export const theme: ThemeConfig = {
       headerHeight: 80,
       headerPadding: "16px 22px",
     },
+    Pagination: {
+      itemBg: "inherit",
+    },
+    Alert: {
+      defaultPadding: "16px 22px",
+    },
   },
 };
