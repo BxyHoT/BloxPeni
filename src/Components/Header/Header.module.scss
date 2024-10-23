@@ -1,0 +1,24 @@
+@use "../../variables.scss";
+.Header {
+  display: flex;
+  justify-content: space-between;
+  color: variables.$heading-color;
+  font-size: variables.$heading-font-size;
+  line-height: 48px;
+}
+
+.link {
+  display: inline-block;
+  padding: 0 20px;
+  border: 1px solid white;
+
+  &:hover {
+    color: variables.$success-color;
+    border-radius: 5px;
+    border: 1px solid variables.$success-color;
+  }
+}
+
+.signIn_link {
+  margin-right: 18px;
+}
