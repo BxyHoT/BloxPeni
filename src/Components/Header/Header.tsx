@@ -1,17 +1,24 @@
 import { Header as HeaderANTD } from "antd/es/layout/layout";
 import style from "./Header.module.scss";
-import { Link } from "react-router-dom";
+import { NavLink, NavLinkRenderProps } from "react-router-dom";
+
+const setActive = ({ isActive }: NavLinkRenderProps) =>
+  isActive ? style.active + " " + style.link : style.link;
 
 export const Header: React.FC = () => {
   return (
-    <HeaderANTD>
+    <HeaderANTD className={style.Head}>
       <div className={style.Header}>
         <h6>
-          <Link to="/articles">Realworld Blog</Link>
+          <NavLink to="/articles">Realworld Blog</NavLink>
         </h6>
         <div>
-          <a className={style.link + " " + style.signIn_link}>Sign In</a>
-          <a className={style.link}>Sign Up</a>
+          <NavLink to={"/sign-in"} className={setActive}>
+            Sign In
+          </NavLink>
+          <NavLink to={"/sign-up"} className={setActive}>
+            Sign Up
+          </NavLink>
         </div>
       </div>
     </HeaderANTD>

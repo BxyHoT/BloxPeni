@@ -7,7 +7,7 @@ import Markdown from "markdown-to-jsx";
 
 export const PostPage: React.FC = () => {
   const { slug } = useParams();
-  const { data, isError, isLoading } = useGetArticleQuery(slug);
+  const { data, isError, isLoading } = useGetArticleQuery(slug!);
   if (isError) {
     return (
       <Alert

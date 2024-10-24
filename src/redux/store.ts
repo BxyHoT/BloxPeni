@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { api } from "./api/api";
 import { useDispatch, useSelector } from "react-redux";
+import paginationSlice from "./slice/pagination/pagination";
 
 const store = configureStore({
   reducer: {
     api: api.reducer,
+    pagination: paginationSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),

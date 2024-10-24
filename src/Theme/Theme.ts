@@ -11,6 +11,7 @@ export const theme: ThemeConfig = {
     },
     Pagination: {
       itemBg: "inherit",
+      itemActiveBg: "rgb(24, 144, 255)",
     },
     Alert: {
       defaultPadding: "16px 22px",
