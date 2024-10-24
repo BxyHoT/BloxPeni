@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { FieldValues } from "react-hook-form";
 
 const BASE_URL = "https://blog-platform.kata.academy/api";
 
@@ -31,6 +32,18 @@ interface ArticlesDTO {
   articlesCount: number;
 }
 
+interface IUserLogin {
+  email: string;
+  password: string;
+  token: string;
+  bio: string | null;
+  image: string | null;
+}
+
+interface LoginUserDTO {
+  user: IUserLogin;
+}
+
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
@@ -42,7 +55,30 @@ export const api = createApi({
     getArticle: builder.query<ArticleDTO, string>({
       query: (slug) => "articles/" + slug,
     }),
+    createUser: builder.mutation<LoginUserDTO, FieldValues>({
+      query: (userInfo) => ({
+        url: "users",
+        method: "POST",
+        body: { user: userInfo },
+      }),
+    }),
+    loginUser: builder.mutation<LoginUserDTO, FieldValues>({
+      query: (userInfo) => ({
+        url: "users/login",
+        method: "POST",
+        body: { user: userInfo },
+      }),
+    }),
   }),
 });
 
-export const { useGetArticlesQuery, useGetArticleQuery } = api;
+export const {
+  useGetArticlesQuery,
+  useGetArticleQuery,
+  useCreateUserMutation,
+  useLoginUserMutation,
+} = api;
+
+export type IApiHooks =
+  | typeof useCreateUserMutation
+  | typeof useLoginUserMutation;
