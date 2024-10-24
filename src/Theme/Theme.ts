@@ -16,5 +16,8 @@ export const theme: ThemeConfig = {
     Alert: {
       defaultPadding: "16px 22px",
     },
+    Divider: {
+      marginLG: 9,
+    },
   },
 };

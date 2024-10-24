@@ -14,7 +14,7 @@ export const FooterFormLink: React.FC<IFooterFormLinkProps> = ({
 }) => {
   return (
     <p className={style.FooterFormLink}>
-      {footerText} <Link to={to}>{linkText}.</Link>
+      {footerText} <Link to={to}>{linkText}</Link>.
     </p>
   );
 };
