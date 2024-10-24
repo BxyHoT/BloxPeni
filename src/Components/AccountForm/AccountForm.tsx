@@ -24,7 +24,9 @@ export const AccountForm: React.FC<IAccountFormProps> = ({
 
   return (
     <Spin spinning={isLoading}>
-      {isError && <Alert message={error.data.errors.message} type="error" />}
+      {isError && (
+        <Alert message="ОГРОМНАЯ ОШИБКА ПЕРЕУСТАНОВИТЕ ВИНДУ" type="error" />
+      )}
       {isSuccess && <Alert message="Success" type="success" />}
       <form
         onSubmit={handler((data) => {
